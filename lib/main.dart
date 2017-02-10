@@ -90,18 +90,10 @@ class AppWidget extends StatelessWidget {
     final List<Todo> todos = app.todos;
     final int page = todos.length == 0 ? -1 : ((todos.length - 1) / PAGE_SIZE).floor();
 
-    return new PageableLazyList(
-      scrollDirection: Axis.horizontal,
+    return new PageView.builder(
       itemCount: page + 1,
-      itemBuilder: (BuildContext context, int start, int count) {
-        if (start != 0 && page <= 0) return const [];
-
-        final List<Widget> list = new List<Widget>(count);
-        for (int i = 0; i < count; i++, start++) {
-          list[i] = ui.block(newTodoItems(todos, start * PAGE_SIZE));
-        }
-
-        return list;
+      itemBuilder: (BuildContext context, int idx) {
+        return ui.block(newTodoItems(todos, idx * PAGE_SIZE));
       },
     );
   }
