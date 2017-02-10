@@ -93,14 +93,13 @@ Widget fluid_box(Widget w, {
   ));
 }
 
-Widget fluid_input(String value, InputValueCB cb, {
-  bool borderB = true,
+Widget text_input(String value, InputValueCB cb, {
   num fontSize = FONT_SIZE + INPUT_EXTRA_SIZE,
   color: const Color.fromRGBO(85, 85, 85, 20.0),
   borderColor: const Color.fromRGBO(85, 85, 85, 200.0)
 }) {
-  return fluid(new Container(
-    decoration: !borderB ? null : new BoxDecoration(
+  return new Container(
+    decoration: new BoxDecoration(
       border: bottom(color: borderColor),
     ),
     child: new InputField(
@@ -112,7 +111,22 @@ Widget fluid_input(String value, InputValueCB cb, {
         fontSize: fontSize,
       ),
     ),
-  ));
+  );
+}
+
+Widget input(String value, InputValueCB cb, {
+  num fontSize = FONT_SIZE + INPUT_EXTRA_SIZE,
+  color: const Color.fromRGBO(85, 85, 85, 20.0),
+}) {
+  return new InputField(
+    autofocus: true,
+    value: new InputValue(text: value),
+    onSubmitted: cb,
+    style: new TextStyle(
+      color: color,
+      fontSize: fontSize,
+    ),
+  );
 }
 
 Widget input_label(String value, {
