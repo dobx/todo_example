@@ -19,7 +19,13 @@ final ThemeData THEME = new ThemeData(primarySwatch: Colors.blueGrey);
 
 // from Colors.blueGrey
 const Color SWATCH_COLOR = const Color(0xFF90A4AE),
-    SWATCH_COLOR_LIGHT = const Color(0xFFB0BEC5);
+    SWATCH_COLOR_LIGHT = const Color(0xFFB0BEC5),
+
+    INPUT_LABEL_COLOR = const Color.fromRGBO(85, 85, 85, 100.0),
+    INPUT_COLOR = const Color.fromRGBO(85, 85, 85, 40.0),
+    INPUT_BORDER_COLOR = const Color.fromRGBO(85, 85, 85, 200.0),
+
+    TEXT_COLOR = const Color.fromRGBO(85, 85, 85, 20.0);
 
 const double FONT_SIZE = 18.0,
     PADDING_SIZE = 5.0,
@@ -95,8 +101,8 @@ Widget fluid_box(Widget w, {
 
 Widget text_input(String value, InputValueCB cb, {
   num fontSize = FONT_SIZE + INPUT_EXTRA_SIZE,
-  color: const Color.fromRGBO(85, 85, 85, 20.0),
-  borderColor: const Color.fromRGBO(85, 85, 85, 200.0)
+  color: INPUT_COLOR,
+  borderColor: INPUT_BORDER_COLOR,
 }) {
   return new Container(
     decoration: new BoxDecoration(
@@ -116,7 +122,7 @@ Widget text_input(String value, InputValueCB cb, {
 
 Widget input(String value, InputValueCB cb, {
   num fontSize = FONT_SIZE + INPUT_EXTRA_SIZE,
-  color: const Color.fromRGBO(85, 85, 85, 20.0),
+  color: INPUT_COLOR,
 }) {
   return new InputField(
     autofocus: true,
@@ -131,7 +137,7 @@ Widget input(String value, InputValueCB cb, {
 
 Widget input_label(String value, {
   num fontSize = FONT_SIZE,
-  Color color = const Color.fromRGBO(85, 85, 85, 100.0),
+  Color color = INPUT_LABEL_COLOR,
 }) {
   return new Padding(
     padding: new EdgeInsets.only(bottom: 1.0),
@@ -146,7 +152,7 @@ Widget input_label(String value, {
 
 Widget text(String value, {
   num fontSize = FONT_SIZE,
-  Color color = const Color.fromRGBO(85, 85, 85, 20.0),
+  Color color = TEXT_COLOR,
   TextDecoration decoration
 }) {
   return new Text(value,
