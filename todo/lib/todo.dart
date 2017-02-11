@@ -52,10 +52,68 @@ class _Todo extends Todo with PubSub {
   set completed(bool completed) { if (completed != null && completed == _completed) return; _completed = completed ?? false; pub(2); }
 }
 
-class App {
+// nested enum
+/// enum Filter {
+///   ALL = 1;
+///   PENDING = 2;
+///   COMPLETED = 3;
+/// }
+enum Todo_Filter {
+  ALL,
+  PENDING,
+  COMPLETED,
+}
+
+/*
+// generated
+Todo_Filter Todo_Filter$$get(int id, Todo_Filter def) {
+  switch (id) {
+    case 1: return Todo_Filter.ALL;
+    case 2: return Todo_Filter.PENDING;
+    case 3: return Todo_Filter.COMPLETED;
+    default: return def;
+  }
+}*/
+
+class App extends PubSub {
+  static bool filterCompleted(Todo todo) => todo.completed;
+  static bool filterPending(Todo todo) => !todo.completed;
+  static List<Todo> filterTodos(final List<Todo> all, Todo_Filter filter) {
+    switch (filter) {
+      case Todo_Filter.COMPLETED:
+        return all.where(filterCompleted).toList(growable: false);
+      case Todo_Filter.PENDING:
+        return all.where(filterPending).toList(growable: false);
+      default:
+        return all;
+    }
+  }
+  static Todo_Filter rotate(Todo_Filter filter) {
+    assert (filter != null);
+
+    switch (filter) {
+      case Todo_Filter.ALL: return Todo_Filter.PENDING;
+      case Todo_Filter.PENDING: return Todo_Filter.COMPLETED;
+      default: return Todo_Filter.ALL;
+    }
+  }
+
   final List<Todo> _todos = new ObservableList<Todo>();
   final Todo pupdate = Todo.createObservable('');
   final Todo pnew;
+  Todo_Filter _filter = Todo_Filter.ALL;
+
+  Todo_Filter get filter {
+    sub(1);
+    return _filter;
+  }
+
+  set filter(Todo_Filter filter) {
+    if (filter != null && filter == _filter) return;
+
+    _filter = filter ?? Todo_Filter.ALL;
+    pub(1);
+  }
 
   App(String initialText) : pnew = Todo.createObservable(initialText);
 

@@ -75,6 +75,30 @@ Widget padded_top(Widget w, {
   );
 }
 
+Widget box(Widget w, {
+  Color bg_color = Colors.white,
+  num padLR = PADDING_SIZE,
+  num padTop = 0.0
+}) {
+  return new Container(
+    padding: new EdgeInsets.only(left: padLR, right: padLR, top: padTop),
+    decoration: new BoxDecoration(
+      backgroundColor: bg_color,
+    ),
+    child: w,
+  );
+}
+
+Widget row2col(Widget w1, Widget w2) {
+  return new Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        w1,
+        w2,
+      ],
+  );
+}
+
 Widget fluid(Widget w) {
   return new Row(
     children: [
@@ -83,20 +107,6 @@ Widget fluid(Widget w) {
       ),
     ],
   );
-}
-
-Widget fluid_box(Widget w, {
-  Color bg_color = Colors.white,
-  num padLR = PADDING_SIZE,
-  num padTop = 0.0
-}) {
-  return fluid(new Container(
-    padding: new EdgeInsets.only(left: padLR, right: padLR, top: padTop),
-    decoration: new BoxDecoration(
-      backgroundColor: bg_color,
-    ),
-    child: w,
-  ));
 }
 
 Widget text_input(String value, InputValueCB cb, {

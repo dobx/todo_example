@@ -53,16 +53,29 @@ class AppWidget extends StatelessWidget {
     );
   }
 
+  void _filterPressed() {
+    if (!app.todos.isEmpty)
+      app.filter = App.rotate(app.filter);
+  }
+
   Widget newTopBar(BuildContext context) {
     return new Column(
       children: <Widget>[
-        ui.fluid_box(ui.input_label('What needs to be done?'), padTop: ui.PADDING_SIZE),
-        ui.fluid_box(wf.$($todo_input, Root.$todo_input)),
+        //ui.fluid(ui.box(ui.input_label('What needs to be done?'))),
+        ui.box(ui.row2col(
+          ui.input_label('What needs to be done?'),
+          new IconButton(
+            icon: new Icon(Icons.filter_list),
+            padding: EdgeInsets.zero,
+            onPressed: _filterPressed,
+          ),
+        )),
+        ui.fluid(ui.box(wf.$($todo_input, Root.$todo_input))),
       ],
     );
   }
 
-  void onTitleChanged(InputValue iv) {
+  void _titleChanged(InputValue iv) {
     final String title = iv.text.trim();
     if (title.isEmpty) return;
 
@@ -73,7 +86,7 @@ class AppWidget extends StatelessWidget {
   }
 
   Widget $todo_input(BuildContext context) {
-    return ui.input(app.pnew.title, onTitleChanged);
+    return ui.input(app.pnew.title, _titleChanged);
   }
 
   List<Widget> newTodoItems(List<Todo> todos, int offset) {
@@ -87,7 +100,7 @@ class AppWidget extends StatelessWidget {
   }
 
   Widget $todo_list(BuildContext context) {
-    final List<Todo> todos = app.todos;
+    final List<Todo> todos = App.filterTodos(app.todos, app.filter);
     final int page = todos.length == 0 ? -1 : ((todos.length - 1) / PAGE_SIZE).floor();
 
     return new PageView.builder(
