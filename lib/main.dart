@@ -44,7 +44,8 @@ class AppWidget extends StatelessWidget {
         appBar: new AppBar(
           title: new Text(HEADER_TITLE),
             actions: [
-              ui.icon_btn(Icons.filter_list, _filterPressed, color: Colors.white),
+              ui.icon_defpad_btn(Icons.filter_list, _filterPressed, color: Colors.white),
+              new ui.AppBarPopup(_filterSelected, Todo_Filter$$str),
             ],
           bottom: new ui.AppBarWidget(newTopBar, (ui.FONT_SIZE + ui.FONT_SIZE + ui.INPUT_EXTRA_SIZE + 14.0)),
         ),
@@ -54,6 +55,10 @@ class AppWidget extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void _filterSelected(int idx) {
+    app.filter = Todo_Filter.values[idx];
   }
 
   void _filterPressed() {

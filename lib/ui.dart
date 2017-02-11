@@ -46,6 +46,37 @@ class AppBarWidget extends StatelessWidget implements AppBarBottomWidget {
   }
 }
 
+class AppBarPopup extends StatelessWidget {
+  static PopupMenuItem<int> new_item(String text, int idx) {
+    return new PopupMenuItem<int>(
+      value: idx,
+      child: new Text(text),
+    );
+  }
+
+  final IntCB cb;
+  final List<String> items;
+  final List<PopupMenuItem<int>> popupItems;
+
+  AppBarPopup(this.cb, this.items) : popupItems = new List<PopupMenuItem<int>>(items.length) {
+    for (int i = 0, len = items.length; i < len; i++) {
+      popupItems[i] = new_item(items[i], i);
+    }
+  }
+
+  List<PopupMenuItem<int>> buildItems(BuildContext context) {
+    return popupItems;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return new PopupMenuButton<int>(
+      onSelected: cb,
+      itemBuilder: buildItems,
+    );
+  }
+}
+
 // ==================================================
 // utils
 
@@ -191,14 +222,23 @@ Widget text(String value, {
 // ==================================================
 // button
 
+Widget icon_defpad_btn(IconData icon, VoidCallback onPressed, {
+  Color color = SWATCH_COLOR,
+}) {
+  return new IconButton(
+    icon: new Icon(icon, color: color),
+    onPressed: onPressed,
+  );
+}
+
 Widget icon_btn(IconData icon, VoidCallback onPressed, {
   EdgeInsets pad = EdgeInsets.zero,
   Color color = SWATCH_COLOR,
 }) {
   return new IconButton(
-    icon: new Icon(icon, color: color),
-    padding: pad,
-    onPressed: onPressed,
+      icon: new Icon(icon, color: color),
+      padding: pad,
+      onPressed: onPressed,
   );
 }
 

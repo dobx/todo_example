@@ -15,3 +15,4 @@
 import 'package:flutter/material.dart';
 
 typedef void InputValueCB(InputValue iv);
+typedef void IntCB(int idx);
