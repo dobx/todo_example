@@ -58,7 +58,8 @@ class AppWidget extends StatelessWidget {
   }
 
   void _filterSelected(int idx) {
-    app.filter = Todo_Filter.values[idx];
+    if (!app.todos.isEmpty)
+      app.filter = Todo_Filter.values[idx];
   }
 
   void _filterPressed() {
