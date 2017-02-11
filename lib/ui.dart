@@ -51,7 +51,7 @@ class AppBarWidget extends StatelessWidget implements AppBarBottomWidget {
 
 void showSnackbar(BuildContext context, String value) {
   Scaffold.of(context).showSnackBar(new SnackBar(
-      content: new Text(value),
+    content: new Text(value),
   ));
 }
 
