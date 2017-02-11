@@ -56,6 +56,7 @@ void showSnackbar(BuildContext context, String value) {
 }
 
 // ==================================================
+// border
 
 Border bottom({
   width: 1.5,
@@ -76,6 +77,9 @@ Widget padded_top(Widget w, {
   );
 }
 
+// ==================================================
+// padding
+
 Widget box(Widget w, {
   Color bg_color = Colors.white,
   num padLR = PADDING_SIZE,
@@ -89,6 +93,9 @@ Widget box(Widget w, {
     child: w,
   );
 }
+
+// ==================================================
+// rows
 
 Widget row2col(Widget w1, Widget w2) {
   return new Row(
@@ -109,6 +116,9 @@ Widget fluid(Widget w) {
     ],
   );
 }
+
+// ==================================================
+// input
 
 Widget text_input(String value, InputValueCB cb, {
   num fontSize = FONT_SIZE + INPUT_EXTRA_SIZE,
@@ -161,6 +171,9 @@ Widget input_label(String value, {
   );
 }
 
+// ==================================================
+// text
+
 Widget text(String value, {
   num fontSize = FONT_SIZE,
   Color color = TEXT_COLOR,
@@ -175,11 +188,8 @@ Widget text(String value, {
   );
 }
 
-Widget block(List<Widget> children) {
-  return new Block(
-    children: children,
-  );
-}
+// ==================================================
+// button
 
 Widget icon_btn(IconData icon, VoidCallback onPressed, {
   EdgeInsets pad = EdgeInsets.zero,
@@ -189,5 +199,14 @@ Widget icon_btn(IconData icon, VoidCallback onPressed, {
     icon: new Icon(icon, color: color),
     padding: pad,
     onPressed: onPressed,
+  );
+}
+
+// ==================================================
+// block
+
+Widget block(List<Widget> children) {
+  return new Block(
+      children: children,
   );
 }
