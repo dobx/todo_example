@@ -64,6 +64,12 @@ enum Todo_Filter {
   COMPLETED,
 }
 
+const List<String> Todo_Filter$$str = const <String>[
+  'All',
+  'Pending',
+  'Completed',
+];
+
 /*
 // generated
 Todo_Filter Todo_Filter$$get(int id, Todo_Filter def) {
@@ -91,11 +97,12 @@ class App extends PubSub {
   static Todo_Filter rotate(Todo_Filter filter) {
     assert (filter != null);
 
-    switch (filter) {
-      case Todo_Filter.ALL: return Todo_Filter.PENDING;
-      case Todo_Filter.PENDING: return Todo_Filter.COMPLETED;
-      default: return Todo_Filter.ALL;
+    int idx = filter.index;
+    if (++idx == Todo_Filter.values.length) {
+      idx = 0;
     }
+
+    return Todo_Filter.values[idx];
   }
 
   final List<Todo> _todos = new ObservableList<Todo>();
