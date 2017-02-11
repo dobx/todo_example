@@ -60,15 +60,11 @@ class AppWidget extends StatelessWidget {
 
   Widget newTopBar(BuildContext context) {
     return new Column(
-      children: <Widget>[
+      children: [
         //ui.fluid(ui.box(ui.input_label('What needs to be done?'))),
         ui.box(ui.row2col(
           ui.input_label('What needs to be done?'),
-          new IconButton(
-            icon: new Icon(Icons.filter_list),
-            padding: EdgeInsets.zero,
-            onPressed: _filterPressed,
-          ),
+          ui.icon_btn(Icons.filter_list, _filterPressed, color: ui.SWATCH_DARK_COLOR),
         )),
         ui.fluid(ui.box(wf.$($todo_input, Root.$todo_input))),
       ],
@@ -135,7 +131,7 @@ class TodoItemState extends State<TodoItem> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           ui.text(c.todo.title, decoration: c.todo.completed ? TextDecoration.lineThrough : null),
-          ui.btn_close(_remove),
+          ui.icon_btn(Icons.clear, _remove),
         ],
       ),
       onLongPress: _toggleCompleted,

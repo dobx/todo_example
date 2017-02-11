@@ -19,7 +19,8 @@ final ThemeData THEME = new ThemeData(primarySwatch: Colors.blueGrey);
 
 // from Colors.blueGrey
 const Color SWATCH_COLOR = const Color(0xFF90A4AE),
-    SWATCH_COLOR_LIGHT = const Color(0xFFB0BEC5),
+    SWATCH_LIGHT_COLOR = const Color(0xFFB0BEC5),
+    SWATCH_DARK_COLOR = const Color(0xFF78909C),
 
     INPUT_LABEL_COLOR = const Color.fromRGBO(85, 85, 85, 100.0),
     INPUT_COLOR = const Color.fromRGBO(85, 85, 85, 40.0),
@@ -91,11 +92,11 @@ Widget box(Widget w, {
 
 Widget row2col(Widget w1, Widget w2) {
   return new Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        w1,
-        w2,
-      ],
+    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    children: [
+      w1,
+      w2,
+    ],
   );
 }
 
@@ -180,9 +181,13 @@ Widget block(List<Widget> children) {
   );
 }
 
-Widget btn_close(VoidCallback onPressed) {
+Widget icon_btn(IconData icon, VoidCallback onPressed, {
+  EdgeInsets pad = EdgeInsets.zero,
+  Color color = SWATCH_COLOR,
+}) {
   return new IconButton(
-    icon: new Icon(Icons.close, color: SWATCH_COLOR),
+    icon: new Icon(icon, color: color),
+    padding: pad,
     onPressed: onPressed,
   );
 }
