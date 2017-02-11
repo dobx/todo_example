@@ -43,6 +43,9 @@ class AppWidget extends StatelessWidget {
       home: new Scaffold(
         appBar: new AppBar(
           title: new Text(HEADER_TITLE),
+            actions: [
+              ui.icon_btn(Icons.filter_list, _filterPressed, color: Colors.white),
+            ],
           bottom: new ui.AppBarWidget(newTopBar, (ui.FONT_SIZE + ui.FONT_SIZE + ui.INPUT_EXTRA_SIZE + 14.0)),
         ),
         body: new Padding(
@@ -61,11 +64,11 @@ class AppWidget extends StatelessWidget {
   Widget newTopBar(BuildContext context) {
     return new Column(
       children: [
-        //ui.fluid(ui.box(ui.input_label('What needs to be done?'))),
-        ui.box(ui.row2col(
+        ui.fluid(ui.box(ui.input_label('What needs to be done?'))),
+        /*ui.box(ui.row2col(
           ui.input_label('What needs to be done?'),
           ui.icon_btn(Icons.filter_list, _filterPressed, color: ui.SWATCH_DARK_COLOR),
-        )),
+        )),*/
         ui.fluid(ui.box(wf.$($todo_input, Root.$todo_input))),
       ],
     );
