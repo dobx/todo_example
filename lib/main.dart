@@ -43,10 +43,10 @@ class AppWidget extends StatelessWidget {
       home: new Scaffold(
         appBar: new AppBar(
           title: new Text(HEADER_TITLE),
-            actions: [
-              ui.icon_defpad_btn(Icons.filter_list, _filterPressed, color: Colors.white),
-              new ui.AppBarPopup(_filterSelected, Todo_Filter$$str),
-            ],
+          actions: [
+            ui.icon_defpad_btn(Icons.filter_list, _filterPressed, color: Colors.white),
+            new ui.AppBarPopup(_filterSelected, Todo_Filter$$str),
+          ],
           bottom: new ui.AppBarWidget(newTopBar, (ui.FONT_SIZE + ui.FONT_SIZE + ui.INPUT_EXTRA_SIZE + 14.0)),
         ),
         body: new Padding(
