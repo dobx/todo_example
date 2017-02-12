@@ -236,9 +236,9 @@ Widget icon_btn(IconData icon, VoidCallback onPressed, {
   Color color = SWATCH_COLOR,
 }) {
   return new IconButton(
-      icon: new Icon(icon, color: color),
-      padding: pad,
-      onPressed: onPressed,
+    icon: new Icon(icon, color: color),
+    padding: pad,
+    onPressed: onPressed,
   );
 }
 
@@ -247,6 +247,6 @@ Widget icon_btn(IconData icon, VoidCallback onPressed, {
 
 Widget block(List<Widget> children) {
   return new Block(
-      children: children,
+    children: children,
   );
 }
