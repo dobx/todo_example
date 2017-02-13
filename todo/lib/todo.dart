@@ -36,20 +36,20 @@ class Todo {
   String _title;
   bool _completed;
 
-  get title => _title;
-  set title(String title) { _title = title; }
+  String get title => _title;
+  void set title(String title) { _title = title; }
 
-  get completed => _completed;
-  set completed(bool completed) { _completed = completed; }
+  bool get completed => _completed;
+  void set completed(bool completed) { _completed = completed; }
 }
 
 class _Todo extends Todo with PubSub {
 
-  get title { sub(1); return _title; }
-  set title(String title) { if (title != null && title == _title) return; _title = title ?? ''; pub(1); }
+  String get title { sub(1); return _title; }
+  void set title(String title) { if (title != null && title == _title) return; _title = title ?? ''; pub(1); }
 
-  get completed { sub(2); return _completed; }
-  set completed(bool completed) { if (completed != null && completed == _completed) return; _completed = completed ?? false; pub(2); }
+  bool get completed { sub(2); return _completed; }
+  void set completed(bool completed) { if (completed != null && completed == _completed) return; _completed = completed ?? false; pub(2); }
 }
 
 // nested enum
