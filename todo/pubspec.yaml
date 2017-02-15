@@ -1,7 +1,10 @@
 name: todo
 description: todo observables
+version: 0.1.0
 
 dependencies:
-  dobx: ^0.5.1
+  dobx: ^0.6.0
+
+dev_dependencies:
   flutter:
     sdk: flutter
