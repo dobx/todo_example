@@ -3,7 +3,7 @@ description: A sample todo app using flutter + dobx
 version: 0.1.0
 
 dependencies:
-  dobx: ^0.6.0
+  dobx: ^0.7.0
   todo:
     path: ./todo
   flutter:

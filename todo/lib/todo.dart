@@ -45,11 +45,11 @@ class Todo {
 
 class _Todo extends Todo with PubSub {
 
-  String get title { sub(1); return _title; }
-  void set title(String title) { if (title != null && title == _title) return; _title = title ?? ''; pub(1); }
+  String get title { $sub(1); return _title; }
+  void set title(String title) { if (title != null && title == _title) return; _title = title ?? ''; $pub(1); }
 
-  bool get completed { sub(2); return _completed; }
-  void set completed(bool completed) { if (completed != null && completed == _completed) return; _completed = completed ?? false; pub(2); }
+  bool get completed { $sub(2); return _completed; }
+  void set completed(bool completed) { if (completed != null && completed == _completed) return; _completed = completed ?? false; $pub(2); }
 }
 
 // nested enum
@@ -111,7 +111,7 @@ class App extends PubSub {
   Todo_Filter _filter = Todo_Filter.ALL;
 
   Todo_Filter get filter {
-    sub(1);
+    $sub(1);
     return _filter;
   }
 
@@ -119,7 +119,7 @@ class App extends PubSub {
     if (filter != null && filter == _filter) return;
 
     _filter = filter ?? Todo_Filter.ALL;
-    pub(1);
+    $pub(1);
   }
 
   App(String initialText) : pnew = Todo.createObservable(initialText);
