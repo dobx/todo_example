@@ -246,7 +246,7 @@ Widget icon_btn(IconData icon, VoidCallback onPressed, {
 // block
 
 Widget block(List<Widget> children) {
-  return new Block(
+  return new ListView(
     children: children,
   );
 }
